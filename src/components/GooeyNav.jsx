@@ -5,6 +5,7 @@ import "./GooeyNav.css";
 const GooeyNav = ({
   items,
   animationTime = 600,
+  badgeCount = 0,
   particleCount = 15,
   particleDistances = [90, 10],
   particleR = 100,
@@ -166,6 +167,7 @@ const GooeyNav = ({
             <li
               key={index}
               className={activeIndex === index ? "active" : ""}
+              style={{ position: 'relative' }}
             >
               <a
                 href={item.href}
@@ -173,6 +175,9 @@ const GooeyNav = ({
                 onKeyDown={(e) => handleKeyDown(e, index)}
               >
                 {item.label}
+                {item.label === 'Cart' && badgeCount > 0 && (
+                  <span className="nav-cart-badge">{badgeCount}</span>
+                )}
               </a>
             </li>
           ))}

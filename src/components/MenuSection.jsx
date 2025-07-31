@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './MenuSection.css';
+import ClickSpark from '../reactbits/clickspark.jsx';
 import starIcon from '../assets/icons8-rating-50.png';
 import cartIcon from '../assets/icons8-cart-48.png';
 import slideUpIcon from '../assets/icons8-slide-up-30.png';
@@ -31,29 +32,15 @@ const menuData = {
   ]
 };
 
-export default function MenuSection() {
+export default function MenuSection({ cart, onAddToCart, onRemoveFromCart }) {
   const [filter, setFilter] = useState('tea');
   const [expanded, setExpanded] = useState(null);
   const [activeCard, setActiveCard] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
-
-  const handleCartClick = (item) => {
-    setSelectedItem(item);
-    setModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setModalOpen(false);
-  };
-
-  const handleAddToCart = () => {
-    alert(`${selectedItem.title} added to cart!`);
-    setModalOpen(false);
-  };
+  // Remove modal state and handlers for cart icon
 
   return (
     <div className="menu-section-wrapper">
+      
       <div className="menu-filters-fixed">
         {['tea', 'coffee', 'drinks'].map(type => (
           <button
@@ -81,15 +68,20 @@ export default function MenuSection() {
               <div className="menu-card-image-area">
                 <div className="menu-card-topbar">
                   <img src={starIcon} alt="rating" className="icon-btn" />
-                  <img
-                    src={cartIcon}
-                    alt="cart"
-                    className="icon-btn clickable"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleCartClick(item);
-                    }}
-                  />
+                  <div style={{ position: 'relative', display: 'inline-block' }}>
+  <img
+    src={cartIcon}
+    alt="cart"
+    className="icon-btn clickable"
+    onClick={(e) => {
+      e.stopPropagation();
+      setExpanded(expanded === item.id ? null : item.id);
+    }}
+  />
+  {(cart && cart[item.id] > 0) && (
+    <span className="cart-badge">{cart[item.id]}</span>
+  )}
+</div>
                 </div>
                 <img src={item.image} alt={item.title} className="menu-card-img-full-tall" />
                 
@@ -108,36 +100,19 @@ export default function MenuSection() {
                 </div>
               </div>
               <div className={`menu-card-extra ${expanded === item.id ? 'open' : ''}`}>
-                <div className="menu-card-desc">{item.desc}</div>
-              </div>
+  <div className="menu-card-desc">{item.desc}</div>
+  <div className="cart-controls">
+    <button onClick={e => { e.stopPropagation(); onRemoveFromCart(item.id); }} className="cart-qty-btn">-</button>
+    <span className="cart-qty-display">{cart && cart[item.id] ? cart[item.id] : 0}</span>
+    <button onClick={e => { e.stopPropagation(); onAddToCart(item.id); }} className="cart-qty-btn">+</button>
+  </div>
+</div>
             </div>
           ))}
         </div>
       </div>
 
-      {modalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h2>{selectedItem.title}</h2>
-              
-            </div>
-            <div className="modal-body">
-              <img src={selectedItem.image} alt={selectedItem.title} className="modal-image" />
-              <p className="modal-desc">{selectedItem.desc}</p>
-              <p className="modal-price">{selectedItem.price}</p>
-            </div>
-            <button className="close-btn" onClick={handleModalClose}>
-                &times;
-              </button>
-            <div className="modal-footer">
-              <button className="add-to-cart-btn" onClick={handleAddToCart}>
-                Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      
     </div>
   );
 }

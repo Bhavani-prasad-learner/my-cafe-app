@@ -8,7 +8,8 @@ const items = [
   { label: "Menu", href: "#menu" },
 ];
 
-const Navbar = ({ onMenuClick, onNavItemClick }) => {
+const Navbar = ({ onMenuClick, onNavItemClick, cart }) => {
+  const totalCartCount = cart ? Object.values(cart).reduce((a, b) => a + b, 0) : 0;
   const handleItemClick = (label, e) => {
     if (label === "Menu") {
       e.preventDefault();
