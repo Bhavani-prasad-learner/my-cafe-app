@@ -1,0 +1,437 @@
+/* Main container */
+.menu-section-wrapper {
+  width: 100%;
+  max-width: 420px;
+  margin-top: 50px;
+  padding-top: 20px;
+  display: flex;
+  margin-left: 60px;
+  margin-right: 60px;
+  
+  align-items: center;
+  position: relative;
+  
+}
+
+
+/* Scrollable area */
+.menu-list-scroll {
+  width: 100%;
+  max-width: 420px;
+  height: calc(100vh - 180px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: #121110 #eee;
+  margin: 0;
+  background: transparent;
+}
+
+
+.menu-list-scroll::-webkit-scrollbar {
+  width: 8px;
+  background-color: #181615;
+  border-radius: 8px;
+}
+.menu-list-scroll::-webkit-scrollbar-thumb {
+  background: #181615;
+  border-radius: 8px;
+}
+
+.menu-list {
+  width: 90%;
+  display: flex;
+ 
+  align-items: center;
+  gap: 2rem;
+ 
+}
+
+.menu-card {
+  width: 100%;
+  max-width: 340px;
+  min-width: 200px;
+  height: 200px;
+  background: #000000;
+  border-radius: 12px;
+  border: 1.5px solid #222;
+  box-shadow: none;
+  overflow: hidden;
+  position: relative;
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin: 0 auto 24px auto;
+  
+}
+
+/* Filter bar */
+.menu-filters-fixed {
+  position: fixed;
+  top: 64px; /* Adjust based on your navbar height */
+  left: 0;
+  right: 0;
+  max-width: 420px;
+  margin:20px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 100;
+  background: #000000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.menu-filters-fixed button {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  background: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #333;
+}
+
+.menu-filters-fixed button.active {
+  background: #ff7f2a;
+  color: white;
+  border-color: #ff7f2a;
+}
+
+.menu-list {
+  width: 100%;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Menu card */
+.menu-card {
+  width: 100%;
+  min-width: 260px;
+  margin-bottom: 1.5rem;
+  background: #000000;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.menu-card.active-glow {
+  box-shadow: 0 0 16px 4px rgba(255, 127, 42, 0.2);
+  transform: scale(1.02);
+}
+
+/* Card image area */
+.menu-card-image-area {
+  position: relative;
+  width: 100%;
+  height: 900px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.menu-card-img-full {
+  width: 100%;
+  height: 130%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.menu-card-bottom-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:safe;
+  padding: 10px;
+  
+  z-index: 4;
+ 
+}
+.menu-card-name-bottom {
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(72, 71, 71, 0.7), 0 1px 1px #222;
+  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 400px;
+  max-width: 80%;
+}
+.menu-card-bottom-overlay .menu-card-slideup-btn {
+  
+  position: static;
+  transform: none;
+}
+.menu-card-price-bottom {
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7), 0 1px 1px #222;
+  white-space: nowrap;
+  max-width: 20%;
+}
+
+.menu-card:hover .menu-card-img-full {
+  transform: scale(1.03);
+} 
+
+
+/* Card top bar with icons */
+.menu-card-topbar {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  padding: 0 12px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
+  background: #f49b48;
+} 
+
+
+.clickable {
+  cursor: pointer;
+}
+
+/* Card bottom bar */
+.menu-card-bottombar {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #000000;
+  border-top: 1px solid #f0f0f0;
+} 
+
+
+
+/* Slide up button */
+.menu-card-slideup-btn {
+  position: absolute;
+  bottom: 0px;
+  background-color: #888484;
+  
+  width: 2px;
+  height: 2px;
+  
+  transform: scale(-1.2rem);
+  border: none;
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.menu-card-slideup-btn img {
+  width: 8px;
+  height: 8px;
+  transition: transform 0.3s ease;
+}
+
+.menu-card-slideup-btn.active img {
+  transform: rotate(360deg);
+}
+
+/* Extra info section */
+.menu-card-extra {
+  max-height: 0;
+  overflow: hidden;
+  background: #565656;
+  transition: max-height 0.4s ease-out;
+  padding: 0 1.2rem;
+}
+
+.menu-card-extra.open {
+  max-height: 200px;
+  padding: 1.2rem;
+  border-top: 1px solid #eee;
+}
+
+.menu-card-desc {
+  margin: 0;
+  color: #f5f8e5;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.menu-card-slideup-btn img {
+  width: 20px;
+  height: 20px;
+  filter: invert(2);
+}
+
+
+.menu-card-extra {
+  display: none;
+}
+
+
+.menu-card-extra.open {
+  display: block;
+}
+
+
+/* Modal styles */
+.menu-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(159, 129, 129, 0.32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.menu-modal-content {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.25);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  max-width: 350px;
+  width: 95vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.menu-modal-img {
+  width: 10%;
+  max-width: 230px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+.menu-modal-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0.5rem 0 0.3rem 0;
+}
+.menu-modal-desc {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 1.1rem;
+  text-align: center;
+}
+.menu-modal-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.1rem;
+}
+.menu-modal-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff7f2a;
+}
+.menu-modal-addcart {
+  background: #ff7f2a;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.menu-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+}
+
+/* Responsive tweaks */
+/* Responsive styles */
+@media (max-width: 600px) {
+  .menu-section-wrapper {
+    max-width: 100%;
+    padding-top: 112px; /* Adjust based on your navbar height */
+  }
+  
+  .menu-filters-fixed {
+    top: 56px; /* Adjust based on your navbar height */
+    padding: 0.8rem 1rem;
+  }
+  
+  .menu-list-scroll {
+    height: calc(100vh - 168px); /* Adjust based on your layout */
+    padding: 0.5rem;
+  }
+  
+  .menu-card {
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .menu-card-image-area {
+    height: 200px;
+  }
+  
+  .menu-card-bottombar {
+    padding: 0.8rem;
+  }
+  
+  .menu-card-name,
+  .menu-card-price {
+    font-size: 1rem;
+  }
+  
+  .menu-card-extra {
+    padding: 0 0.8rem;
+  }
+  
+  .menu-card-extra.open {
+    padding: 0.8rem;
+  }
+}
+
+

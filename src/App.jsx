@@ -1,35 +1,26 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Navbar from './components/navbar'
+import ClickSpark from './reactbits/clickspark.jsx';
+import Background from './components/Background.jsx';
+import MenuSection from './components/MenuSection'; 
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleMenuClick = () => setMenuOpen(true);
+  const handleCloseMenu = () => setMenuOpen(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app-wrapper">
+      <Background />
+      <div className="foreground-content">
+        <ClickSpark />
+        <Navbar onMenuClick={handleMenuClick} />
+        {menuOpen && <MenuSection onClose={handleCloseMenu} />}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
 export default App
