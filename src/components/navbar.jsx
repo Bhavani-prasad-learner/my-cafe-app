@@ -8,11 +8,13 @@ const items = [
   { label: "Menu", href: "#menu" },
 ];
 
-const Navbar = ({ onMenuClick }) => {
+const Navbar = ({ onMenuClick, onNavItemClick }) => {
   const handleItemClick = (label, e) => {
     if (label === "Menu") {
       e.preventDefault();
       onMenuClick && onMenuClick();
+    } else {
+      onNavItemClick && onNavItemClick();
     }
   };
 

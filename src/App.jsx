@@ -16,7 +16,7 @@ function App() {
       <Background />
       <div className="foreground-content">
         <ClickSpark />
-        <Navbar onMenuClick={handleMenuClick} />
+        <Navbar onMenuClick={handleMenuClick} onNavItemClick={handleCloseMenu} />
         {menuOpen && <MenuSection onClose={handleCloseMenu} />}
       </div>
     </div>
